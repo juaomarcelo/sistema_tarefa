@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import "./TaskForm.css"
 
 const TaskForm = ({ onAddTask }) => {
-    const [task, setTask] = useState({
-      titulo: '',
-      descricao: '',
-      tipo: 'Backend',
-      responsavel: '',
-      inicio: '', 
-    });
+  const [task, setTask] = useState({
+    titulo: '',
+    descricao: '',
+    tipo: 'Backend',
+    responsavel: '',
+    inicio: '', 
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +18,6 @@ const TaskForm = ({ onAddTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validação dos campos
     if (!task.titulo || !task.descricao) {
       alert('Por favor, preencha todos os campos.');
       return;
@@ -96,4 +96,4 @@ const TaskForm = ({ onAddTask }) => {
   );
 };
 
-export default TaskForm;
+export default TaskForm

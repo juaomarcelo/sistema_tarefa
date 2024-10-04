@@ -1,21 +1,20 @@
-// componentes/EditarTarefa.jsx
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const EditarTarefa = ({ tasks, onEditTask }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [task, setTask] = useState({
-    titulo: '',
-    descricao: '',
-    tipo: 'Backend',
-    responsavel: '',
-    inicio: '',
+    titulo: "",
+    descricao: "",
+    tipo: "Backend", // Valor inicial padrão (ajuste conforme necessário)
+    responsavel: "",
+    inicio: "",
   });
 
   useEffect(() => {
-    const tarefaEncontrada = tasks.find(t => t.id === parseInt(id));
+    const tarefaEncontrada = tasks.find((t) => t.id === parseInt(id));
     if (tarefaEncontrada) {
       setTask(tarefaEncontrada);
     }
@@ -30,7 +29,7 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
     e.preventDefault();
 
     onEditTask({ ...task, id: parseInt(id) }); // Inclui o ID na tarefa atualizada
-    navigate('/pendentes');
+    navigate("/pendentes"); // Redireciona após salvar as alterações
   };
 
   return (
@@ -60,7 +59,12 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
         </div>
         <div>
           <label htmlFor="tipo">Tipo:</label>
-          <select id="tipo" name="tipo" value={task.tipo} onChange={handleChange}>
+          <select
+            id="tipo"
+            name="tipo"
+            value={task.tipo}
+            onChange={handleChange}
+          >
             <option value="Backend">Backend</option>
             <option value="Frontend">Frontend</option>
           </select>

@@ -73,7 +73,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
-          <h1>Minhas Tarefas</h1>
+          <h1>Gerenciamento de Tarefas</h1>
 
           <nav>
             <ul>

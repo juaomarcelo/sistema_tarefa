@@ -1,0 +1,11 @@
+/* Adicione isso ao seu arquivo CSS */
+.notification {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: #ffffff; /* Texto branco */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-bottom: 20px; /* Espaço abaixo da notificação */
+    font-weight: bold; /* Texto em negrito */
+    text-align: center; /* Centralizar o texto */
+  }
+  

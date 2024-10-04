@@ -1,0 +1,76 @@
+form {
+    background-color: #1f2429; /* Fundo azul escuro */
+    color: #e9ecef; /* Texto cinza claro */
+    padding: 20px;
+    border-radius: 8px; /* Bordas arredondadas */
+    max-width: 500px;
+    margin: auto;
+    font-family: 'Roboto', sans-serif; /* Fonte legível */
+  }
+  
+  form h2 {
+    font-size: 1.8rem;
+    color: #ffffff; /* Texto branco */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 1rem;
+    color: #ced4da; /* Texto cinza prateado */
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #343a40; /* Fundo cinza grafite */
+    color: #ffffff;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  button[type="submit"] {
+    background-color: #28a745; /* Fundo verde */
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #218838; /* Cor mais escura no hover */
+  }
+  
+  /* Estilo para os botões de editar, excluir, etc. */
+  button {
+    background-color: #007bff; /* Azul para os botões de ação */
+    color: #ffffff;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+  }
+  

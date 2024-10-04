@@ -2,7 +2,7 @@
 import React from 'react';
 import TaskItem from './TaskItem';
 
-const TaskList = ({ tasks, onToggleStatus, onDeleteTask, onEditTask }) => { // Recebe as props
+const TaskList = ({ tasks, onToggleStatus, onDeleteTask, onEditTask }) => { // Recebe onDeleteTask
   return (
     <ul>
       {tasks.length === 0 ? (
@@ -12,9 +12,9 @@ const TaskList = ({ tasks, onToggleStatus, onDeleteTask, onEditTask }) => { // R
           <TaskItem 
             key={task.id} 
             task={task} 
-            onToggleStatus={onToggleStatus} 
+            onToggleStatus={onToggleStatus}
             onDeleteTask={onDeleteTask} // Passa onDeleteTask para TaskItem
-            onEditTask={onEditTask}     // Passa onEditTask para TaskItem
+            onEditTask={onEditTask}
           />
         ))
       )}
