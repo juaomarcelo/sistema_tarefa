@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./TaskForm.css"
+import "../estilos/TaskForm.css";
 
 const TaskForm = ({ onAddTask }) => {
   const [task, setTask] = useState({
@@ -23,13 +23,30 @@ const TaskForm = ({ onAddTask }) => {
       return;
     }
 
-    onAddTask(task); // <<--- Correção aqui: removemos o spread
+    // Confirmação antes de adicionar a tarefa
+    const isConfirmed = window.confirm("Deseja realmente adicionar esta tarefa?");
+    if (!isConfirmed) {
+      return; // Se o usuário cancelar, a tarefa não será adicionada
+    }
 
-    // Limpando o estado do formulário 
+    // Formata a data de início sem alterar o fuso horário
+    const data = task.inicio.split('-'); // Divide o valor da data
+    const dataFormatada = `${data[2]}/${data[1]}/${data[0]}`; // Formata para dd/mm/yyyy
+
+    // Cria a nova tarefa com a data formatada
+    const novaTarefa = {
+      ...task,
+      inicio: dataFormatada, // Sobrescreve o campo início com a data formatada
+    };
+
+    // Passa a nova tarefa com a data formatada
+    onAddTask(novaTarefa);
+
+    // Limpa o estado do formulário
     setTask({
       titulo: '',
       descricao: '',
-      tipo: 'Backend', 
+      tipo: 'Backend',
       responsavel: '',
       inicio: '',
     });
@@ -96,4 +113,4 @@ const TaskForm = ({ onAddTask }) => {
   );
 };
 
-export default TaskForm
+export default TaskForm;

@@ -15,10 +15,16 @@ const TaskItem = ({ task, onToggleStatus, onDeleteTask, onEditTask }) => {
   return (
     <li className={task.concluida ? "concluida" : ""}>
       {/* Botão para Concluir/Reabrir a tarefa */}
-      <button onClick={handleConcluir} className="botao-concluir">
-        {task.concluida ? 'Reabrir' : 'Concluir'} 
-      </button>
+      <div className="botoes-tarefa">
+        {onEditTask && <button onClick={handleEdit}>Editar</button>}
+        <button onClick={() => onDeleteTask(task.id)}>Excluir</button>
+      </div>
+     
 
+      {/* Exibe a data e hora de conclusão se a tarefa estiver concluída */}
+      {task.concluida && (
+        <p className="conclusao-data"> Concluída em : {task.conclusaoData}</p>
+      )}
       {/* Campos da Tarefa */}
       <p>Título: {task.titulo}</p>
       <p>Descrição: {task.descricao}</p>
@@ -27,12 +33,10 @@ const TaskItem = ({ task, onToggleStatus, onDeleteTask, onEditTask }) => {
       <p>Início: {task.inicio}</p>
 
       {/* Botões Editar e Excluir */}
-      <div className="botoes-tarefa">
-        {onEditTask && (
-          <button onClick={handleEdit}>Editar</button>
-        )}
-        <button onClick={() => onDeleteTask(task.id)}>Excluir</button>
-      </div>
+      <button onClick={handleConcluir} className="botao-concluir">
+        {task.concluida ? "Reabrir" : "Concluir"}
+      </button>
+     
     </li>
   );
 };

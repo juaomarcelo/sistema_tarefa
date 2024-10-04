@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import TaskForm from "./componentes/TaskForm";
 import TarefasConcluidas from "./componentes/TarefasConcluidas";
 import TarefasPendentes from "./componentes/TarefasPendentes";
@@ -32,6 +27,13 @@ function App() {
     }
   }, [tasks]);
 
+  const numTarefasPendentes = tasks.filter((task) => !task.concluida).length;
+
+  const numTarefasConcluidas = tasks.filter((task) => task.concluida).length;
+
+  
+  
+
   const onDeleteTask = (id) => {
     const confirmarExclusao = window.confirm(
       "Tem certeza que deseja excluir esta tarefa?"
@@ -42,24 +44,27 @@ function App() {
   };
 
   const onEditTask = (updatedTask) => {
-    setTasks(
-      tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
-    );
+    setTasks(tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t)));
   };
 
   // Função para adicionar nova tarefa
   const addTask = (newTask) => {
-    setTasks([
-      ...tasks,
-      { ...newTask, concluida: false, id: Date.now() },
-    ]);
+    setTasks([...tasks, { ...newTask, concluida: false, id: Date.now() }]);
   };
 
   // Função para alternar o status da tarefa (concluída/pendente)
   const toggleTaskStatus = (id) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, concluida: !task.concluida } : task
+        task.id === id
+          ? {
+              ...task,
+              concluida: !task.concluida,
+              conclusaoData: !task.concluida
+                ? new Date().toLocaleString()
+                : null,
+            }
+          : task
       )
     );
   };
@@ -81,10 +86,12 @@ function App() {
                 <Link to="/registrar">Registrar Nova Tarefa</Link>
               </li>
               <li>
-                <Link to="/pendentes">Tarefas Pendentes</Link>
+                <Link to="/pendentes">
+                  Tarefas Pendentes ({numTarefasPendentes}){" "}
+                </Link>
               </li>
               <li>
-                <Link to="/concluidas">Tarefas Concluídas</Link>
+                <Link to="/concluidas">Tarefas Concluídas ({numTarefasConcluidas}) </Link>
               </li>
             </ul>
           </nav>
@@ -114,9 +121,7 @@ function App() {
             />
             <Route
               path="/editar/:id" // Rota para editar tarefa (com ID dinâmico)
-              element={
-                <EditarTarefa tasks={tasks} onEditTask={onEditTask} />
-              }
+              element={<EditarTarefa tasks={tasks} onEditTask={onEditTask} />}
             />
             <Route
               path="/concluidas"

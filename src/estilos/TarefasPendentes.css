@@ -3,6 +3,8 @@
     align-items: center; /* Alinhar itens verticalmente ao centro */
     justify-content: space-between; /* Distribuir espaço entre os itens */
     margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+    text-align: center;
+    justify-content: center;
   }
   
   .notification {
@@ -16,3 +18,4 @@
     margin-left: 20px; /* Espaçamento à esquerda */
   }
   
+ 
