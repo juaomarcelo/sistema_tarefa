@@ -8,27 +8,55 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
   const [task, setTask] = useState({
     titulo: "",
     descricao: "",
-    tipo: "Backend", // Valor inicial padrão (ajuste conforme necessário)
+    tipo: "Backend",
     responsavel: "",
-    inicio: "",
+    inicio: "", // Formato YYYY-MM-DD
   });
 
+  // Função para garantir que a data esteja no formato DD/MM/YYYY para exibir no input text
+  const formatDateToDisplay = (dateString) => {
+    if (!dateString) return ""; // Retorna vazio se não houver data
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`; // Retorna no formato DD/MM/YYYY
+  };
+
+  // Função para garantir que a data esteja no formato YYYY-MM-DD para o campo date
+  const formatDateToInput = (dateString) => {
+    if (!dateString) return ""; // Retorna vazio se não houver data
+    const [day, month, year] = dateString.split("/"); // Formato DD/MM/YYYY
+    return `${year}-${month}-${day}`; // Retorna no formato YYYY-MM-DD
+  };
+
+  // Carregar os dados da tarefa ao montar o componente ou quando o ID mudar
   useEffect(() => {
     const tarefaEncontrada = tasks.find((t) => t.id === parseInt(id));
     if (tarefaEncontrada) {
-      setTask(tarefaEncontrada);
+      setTask({
+        ...tarefaEncontrada,
+        inicio: tarefaEncontrada.inicio
+          ? formatDateToInput(tarefaEncontrada.inicio) // Converte a data para o formato YYYY-MM-DD
+          : "",  // Se não houver data, mantém vazio
+      });
     }
   }, [tasks, id]);
 
+  // Manipular a alteração nos campos do formulário
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTask({ ...task, [name]: value });
   };
 
+  // Manipular o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onEditTask({ ...task, id: parseInt(id) }); // Inclui o ID na tarefa atualizada
+    // Converte a data de volta para DD/MM/YYYY antes de salvar
+    const tarefaAtualizada = {
+      ...task,
+      inicio: task.inicio ? formatDateToDisplay(task.inicio) : "", // Converte para DD/MM/YYYY
+    };
+
+    onEditTask({ ...tarefaAtualizada, id: parseInt(id) });
     navigate("/pendentes"); // Redireciona após salvar as alterações
   };
 
@@ -85,7 +113,7 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
             type="date"
             id="inicio"
             name="inicio"
-            value={task.inicio}
+            value={task.inicio}  // Formato YYYY-MM-DD para input[type=date]
             onChange={handleChange}
           />
         </div>

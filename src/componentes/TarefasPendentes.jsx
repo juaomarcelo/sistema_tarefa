@@ -12,6 +12,8 @@ const TarefasPendentes = ({
   const location = useLocation();
   const tarefasPendentes = tasks.filter((task) => !task.concluida);
 
+  
+
   return (
     <div className="container-tarefas" key={location.pathname}>
       <div className="header-tarefas">
