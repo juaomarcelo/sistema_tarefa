@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditarTarefa = ({ tasks, onEditTask }) => {
   const { id } = useParams();
@@ -50,6 +52,12 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Confirmação antes de salvar
+    const confirmSave = window.confirm("Você tem certeza que deseja salvar as alterações?");
+    if (!confirmSave) {
+      return; // Não faz nada se o usuário cancelar
+    }
+
     // Converte a data de volta para DD/MM/YYYY antes de salvar
     const tarefaAtualizada = {
       ...task,
@@ -57,6 +65,7 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
     };
 
     onEditTask({ ...tarefaAtualizada, id: parseInt(id) });
+    toast.success("Alterações salvas com sucesso!"); // Notificação de sucesso
     navigate("/pendentes"); // Redireciona após salvar as alterações
   };
 
@@ -119,6 +128,7 @@ const EditarTarefa = ({ tasks, onEditTask }) => {
         </div>
         <button type="submit">Salvar Alterações</button>
       </form>
+      <ToastContainer /> {/* Componente para renderizar as notificações */}
     </div>
   );
 };

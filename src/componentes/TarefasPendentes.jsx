@@ -12,7 +12,11 @@ const TarefasPendentes = ({
   const location = useLocation();
   const tarefasPendentes = tasks.filter((task) => !task.concluida);
 
-  
+  // Função para lidar com a conclusão da tarefa
+  const handleToggleStatus = (taskId) => {
+    onToggleStatus(taskId);
+    alert('Tarefa concluída com sucesso!'); // Exibe um alert após concluir a tarefa
+  };
 
   return (
     <div className="container-tarefas" key={location.pathname}>
@@ -22,7 +26,7 @@ const TarefasPendentes = ({
 
       <TaskList
         tasks={tarefasPendentes}
-        onToggleStatus={onToggleStatus}
+        onToggleStatus={handleToggleStatus} // Passa a nova função
         onDeleteTask={onDeleteTask}
         onEditTask={onEditTask}
       />
