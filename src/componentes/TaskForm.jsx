@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 const TaskForm = ({ onAddTask }) => {
-  const [task, setTask] = useState({
-    titulo: '',
-    descricao: '',
-    tipo: 'Backend',
-    responsavel: '',
-    inicio: '', 
-  });
+    const [task, setTask] = useState({
+      titulo: '',
+      descricao: '',
+      tipo: 'Backend',
+      responsavel: '',
+      inicio: '', 
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,18 +17,20 @@ const TaskForm = ({ onAddTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validação dos campos
     if (!task.titulo || !task.descricao) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
 
-    onAddTask(task);
+    onAddTask(task); // <<--- Correção aqui: removemos o spread
 
+    // Limpando o estado do formulário 
     setTask({
       titulo: '',
       descricao: '',
       tipo: 'Backend', 
-      responsável: '',
+      responsavel: '',
       inicio: '',
     });
   };

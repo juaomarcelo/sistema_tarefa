@@ -8,20 +8,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; 
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .container-tarefas {
   display: flex;
+  flex-direction: column; 
   gap: 20px;
   margin-bottom: 20px;
+  width: 80%; 
 }
 
 .coluna {
-  flex: 1; 
-  min-width: 200px; 
+  flex: 1;
+  min-width: 200px;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
@@ -41,4 +43,22 @@ li {
 .concluida {
   text-decoration: line-through;
   color: #999;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 20px;
+}
+
+nav li a {
+  text-decoration: none; 
+  color: white; 
+  padding: 10px; 
+  border-radius: 5px; 
+}
+
+nav li a:hover {
+  background-color: #555; 
 }
